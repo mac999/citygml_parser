@@ -3,7 +3,7 @@
 **CityGML 3.0** (Python version) parser for reading, writing, and converting CityGML files into JSON using Python. Since there is no suitable, easy-to-use, Python-based CityGML 3.0 parser available, I developed this. In the future, this parser is planned to be used to physically implement [ISO/TS 19166 BIM-GIS conceptual mapping](https://github.com/mac999/ISO19166-B2GM). In addition, if you need landxml parser (python version), refer to [landxml parser](https://github.com/mac999/landxml_parser). The parser function will be further updated.</br>
 <img src="https://github.com/mac999/citygml_parser/blob/main/docs/img12.png" height="250"></img>
 
-## **🚀 Features**
+## Features
 Version 0.1 
 - Parse **CityGML 3.0** files into Python objects. 
 - Modify CityGML objects and write back to XML format.
@@ -24,7 +24,7 @@ Version 0.1
 - Fix name space problem
 ---
 
-## **📂 Installation and usage**
+## Installation and usage
 To install the required dependencies, run:
 
 ```bash
@@ -38,8 +38,8 @@ python citygml_converter --input ./sample/CityGML_3.gml --output ./output.gml
 
 ---
 
-## **📄 Usage**
-### **📍 1. Read a CityGML File**
+## Usage
+### 1. Read a CityGML File
 ```python
 from citygml_parser3 import *
 from xsdata.formats.dataclass.parsers import XmlParser
@@ -56,7 +56,7 @@ print(model)
 
 ---
 
-### **📍 2. List CityGML buliding and surface information**
+### 2. List CityGML building and surface information
 ```python
 city_objects = model.city_object_member
 
@@ -104,7 +104,7 @@ for city_object in city_objects:
 
 ---
 
-### **📍 3. Modify and Write CityGML File**
+### 3. Modify and Write CityGML File
 ```python
 from xsdata.formats.dataclass.context import XmlContext
 from xsdata.formats.dataclass.serializers import XmlSerializer
@@ -125,15 +125,15 @@ with path.open("w") as fp:
 
 ---
 
-### **📍 4. Convert CityGML to JSON**
+### 4. Convert CityGML to JSON
 You can convert CityGML files to JSON format using the included `citygml_json.py` script.
 
-#### **📌 Convert via Command Line**
+#### Convert via Command Line
 ```bash
 python citygml_json.py --input_file ./sample/CityGML_3.gml --output_file ./CityGML_3.json
 ```
 
-#### **📌 Convert using Python**
+#### Convert using Python
 ```python
 from citygml_json import convert_citygml_to_json
 
@@ -144,7 +144,7 @@ convert_citygml_to_json(input_gml, output_json)
 print("CityGML successfully converted to JSON.")
 ```
 
-### **📍 5. Convert CityGML to MESH**
+### 5. Convert CityGML to MESH
 You can convert CityGML to MESH format. Every `gml:Polygon` in the model is triangulated, so any CityObject (buildings, roads, vegetation, city furniture, terrain, etc.) is meshed - not only buildings. Concave surfaces and interior rings (holes) are triangulated with earcut, and surfaces referenced through `xlink:href` (e.g. a `lodXSolid` shell pointing to shared boundary polygons) are de-duplicated by `gml:id` so each polygon is meshed once.
 ```bash
 python citygml_to_mesh.py --input ./sample/CityGML_3.gml --output ./mesh/CityGML_3.glb
@@ -153,35 +153,35 @@ python citygml_to_mesh.py --input ./sample/CityGML_3.gml --output ./mesh/CityGML
 
 ---
 
-## **📂 Project Structure**
+## Project Structure
 ```
 citygml_parser/
-│── citygml_parser3/       # CityGML parsing module
-│── sample/                # Sample CityGML files
-│── docs/                  # manual
-│── citygml_parser_example.py  # Example 
-│── citygml_converter.py  # CityGML conversion 
-│── citygml_json.py       # CityGML to JSON conversion
-│── citygml_to_mesh.py    # CityGML to Mesh conversion 
-│── README.md             # Project documentation
+  citygml_parser3.py         # CityGML 3.0 parsing module (schema dataclasses)
+  sample/                    # Sample CityGML files
+  docs/                      # manual
+  citygml_parser_example.py  # Example
+  citygml_converter.py       # CityGML read/write conversion
+  citygml_json.py            # CityGML to JSON conversion
+  citygml_to_mesh.py         # CityGML to Mesh conversion
+  README.md                  # Project documentation
 ```
 
 ---
 
-## **👤 Author**
+## Author
 - **Name:** Taewook Kang  
 - **Email:** [laputa99999@gmail.com](mailto:laputa99999@gmail.com)
 
 ---
 
-## **📜 License**
+## License
 This project is licensed under the **MIT License**.
 
 ---
 
-## **🙌 Acknowledgments**
+## Acknowledgments
 This project is inspired by **CityGML 3.0**, an OGC standard for 3D city modeling.
-- 🔗 [https://www.ogc.org/standards/citygml](https://www.ogc.org/standards/citygml)
-- 🔗 [https://github.com/tudelft3d/CityGML-schema-validation](https://github.com/tudelft3d/CityGML-schema-validation/tree/master)
-- 🔗 [CityGML2-to-CityGML3](https://github.com/tum-gis/citygml2-to-citygml3)
-- 🔗 [ISO/TS 19166 BIM-GIS conceptual mapping](https://github.com/mac999/ISO19166-B2GM)
+- [https://www.ogc.org/standards/citygml](https://www.ogc.org/standards/citygml)
+- [https://github.com/tudelft3d/CityGML-schema-validation](https://github.com/tudelft3d/CityGML-schema-validation/tree/master)
+- [CityGML2-to-CityGML3](https://github.com/tum-gis/citygml2-to-citygml3)
+- [ISO/TS 19166 BIM-GIS conceptual mapping](https://github.com/mac999/ISO19166-B2GM)
