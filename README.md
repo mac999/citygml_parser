@@ -8,7 +8,7 @@ Version 0.1
 - Parse **CityGML 3.0** files into Python objects. 
 - Modify CityGML objects and write back to XML format.
 - Convert **CityGML to JSON** for easier data processing and integration.
-- Convert **CityGML to MESH** (under development).
+- Convert **CityGML to MESH** (triangulated geometry for all city objects, interior holes and `xlink:href` surface references supported).
 </br>[Download CityGML 3.0_parser class with members HTML document](https://raw.githubusercontent.com/mac999/citygml_parser/refs/heads/main/docs/citygml_parser3.html)
 ---
 <img src="https://github.com/mac999/citygml_parser/blob/main/docs/img1.PNG" height="250"></img>
@@ -144,10 +144,10 @@ convert_citygml_to_json(input_gml, output_json)
 print("CityGML successfully converted to JSON.")
 ```
 
-### **📍 5. Convert CityGML to MESH (under development) **
-You can convert CityGML to MESH format. It supports building's boundary, lod solid which consists of polygon surface. 
+### **📍 5. Convert CityGML to MESH**
+You can convert CityGML to MESH format. Every `gml:Polygon` in the model is triangulated, so any CityObject (buildings, roads, vegetation, city furniture, terrain, etc.) is meshed - not only buildings. Concave surfaces and interior rings (holes) are triangulated with earcut, and surfaces referenced through `xlink:href` (e.g. a `lodXSolid` shell pointing to shared boundary polygons) are de-duplicated by `gml:id` so each polygon is meshed once.
 ```bash
-python citygml_mesh.py --input_file ./sample/ManhattanSmall.gml --output_file ./ManhattanSmall.glb
+python citygml_to_mesh.py --input ./sample/CityGML_3.gml --output ./mesh/CityGML_3.glb
 ```
 <img src="https://github.com/mac999/citygml_parser/blob/main/docs/citygml_mesh2.gif" width="600"></img>
 
