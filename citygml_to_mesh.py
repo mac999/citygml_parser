@@ -212,7 +212,7 @@ def convert_mesh(input_gml_fname, output_mesh_fname):
 	return mesh
 
 
-if __name__ == "__main__":
+def main():
 	parser = argparse.ArgumentParser(description='CityGML example to convert to mesh.')
 	parser.add_argument('--input', type=str, default='./sample/ManhattanSmall.gml', help='Input CityGML file')
 	parser.add_argument('--output', type=str, default='./mesh/ManhattanSmall.glb', help='Output mesh file. STL, binary PLY, ASCII OFF, OBJ, GLTF/GLB 2.0, COLLADA')
@@ -227,3 +227,7 @@ if __name__ == "__main__":
 	except Exception as e:
 		print("CityGML file conversion failed.")
 		print(e)
+
+
+if __name__ == "__main__":
+	main()

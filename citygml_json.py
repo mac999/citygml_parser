@@ -32,7 +32,7 @@ def convert_citygml_to_json(input_file: str, output_file: str):
 
 	return json_model
 
-if __name__ == "__main__":
+def main():
 	# parse arguments
 	parser = argparse.ArgumentParser(description='Convert CityGML file to JSON.')
 	parser.add_argument('--input', type=str, default='./sample/CityGML_3.gml', help='Input CityGML file')
@@ -43,3 +43,7 @@ if __name__ == "__main__":
 	# convert CityGML to JSON
 	convert_citygml_to_json(args.input, args.output)
 	print("CityGML file converted to JSON.")
+
+
+if __name__ == "__main__":
+	main()

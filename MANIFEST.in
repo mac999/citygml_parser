@@ -1,0 +1,8 @@
+include README.md
+include LICENSE
+include requirements.txt
+recursive-include sample *.gml
+exclude install_manual.bat
+exclude make_manual.bat
+prune docs
+prune mesh

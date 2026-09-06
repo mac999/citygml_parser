@@ -1,0 +1,7 @@
+numpy>=1.21
+lxml>=4.6
+xsdata>=24.0
+trimesh>=4.0
+shapely>=2.0
+mapbox-earcut>=1.0
+tqdm>=4.60

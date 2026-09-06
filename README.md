@@ -24,16 +24,39 @@ Version 0.1
 - Fix name space problem
 ---
 
-## Installation and usage
-To install the required dependencies, run:
+## Installation
+Install from the source tree (Python 3.9 or later). All dependencies are resolved by pip:
 
 ```bash
-pip install numpy xsdata lxml pdoc trimesh shapely
+git clone https://github.com/mac999/citygml_parser.git
+cd citygml_parser
+pip install .
 ```
-Converter usage
+For development (editable install, so source edits take effect immediately):
 ```bash
-python citygml_json --input ./sample/CityGML_3.gml --output ./CityGML_3.json
-python citygml_converter --input ./sample/CityGML_3.gml --output ./output.gml
+pip install -e .
+```
+To install only the runtime dependencies without the package:
+```bash
+pip install -r requirements.txt
+```
+To build the HTML manual, install the optional `docs` extra (pdoc):
+```bash
+pip install .[docs]
+```
+
+## Usage from the command line
+After installation the following commands are available on the PATH:
+```bash
+citygml-json --input ./sample/CityGML_3.gml --output ./CityGML_3.json
+citygml-convert --input ./sample/CityGML_3.gml --output ./output.gml
+citygml-to-mesh --input ./sample/CityGML_3.gml --output ./mesh/CityGML_3.glb
+```
+The same scripts can be run directly from the source tree:
+```bash
+python citygml_json.py --input ./sample/CityGML_3.gml --output ./CityGML_3.json
+python citygml_converter.py --input ./sample/CityGML_3.gml --output ./output.gml
+python citygml_to_mesh.py --input ./sample/CityGML_3.gml --output ./mesh/CityGML_3.glb
 ```
 
 ---
@@ -130,7 +153,7 @@ You can convert CityGML files to JSON format using the included `citygml_json.py
 
 #### Convert via Command Line
 ```bash
-python citygml_json.py --input_file ./sample/CityGML_3.gml --output_file ./CityGML_3.json
+python citygml_json.py --input ./sample/CityGML_3.gml --output ./CityGML_3.json
 ```
 
 #### Convert using Python
@@ -163,6 +186,10 @@ citygml_parser/
   citygml_converter.py       # CityGML read/write conversion
   citygml_json.py            # CityGML to JSON conversion
   citygml_to_mesh.py         # CityGML to Mesh conversion
+  pyproject.toml             # Package metadata, dependencies, CLI entry points
+  requirements.txt           # Runtime dependencies only
+  MANIFEST.in                # Files included in the source distribution
+  LICENSE                    # MIT license
   README.md                  # Project documentation
 ```
 

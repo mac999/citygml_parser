@@ -1,0 +1,57 @@
+[build-system]
+requires = ["setuptools>=77", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "citygml-parser"
+version = "0.1.0"
+description = "CityGML 3.0 parser for reading, writing, and converting CityGML files into JSON and triangulated mesh"
+readme = "README.md"
+requires-python = ">=3.9"
+license = "MIT"
+license-files = ["LICENSE"]
+authors = [{ name = "Taewook Kang", email = "laputa99999@gmail.com" }]
+keywords = ["citygml", "citygml3", "gml", "gis", "bim", "3d-city-model", "ogc", "mesh"]
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "Intended Audience :: Developers",
+    "Intended Audience :: Science/Research",
+    "Operating System :: OS Independent",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
+    "Topic :: Scientific/Engineering :: GIS",
+]
+dependencies = [
+    "numpy>=1.21",
+    "lxml>=4.6",
+    "xsdata>=24.0",
+    "trimesh>=4.0",
+    "shapely>=2.0",
+    "mapbox-earcut>=1.0",
+    "tqdm>=4.60",
+]
+
+[project.optional-dependencies]
+docs = ["pdoc>=14.0"]
+
+[project.urls]
+Homepage = "https://github.com/mac999/citygml_parser"
+Repository = "https://github.com/mac999/citygml_parser"
+Issues = "https://github.com/mac999/citygml_parser/issues"
+
+[project.scripts]
+citygml-json = "citygml_json:main"
+citygml-convert = "citygml_converter:main"
+citygml-to-mesh = "citygml_to_mesh:main"
+
+[tool.setuptools]
+py-modules = [
+    "citygml_parser3",
+    "citygml_json",
+    "citygml_converter",
+    "citygml_to_mesh",
+]
